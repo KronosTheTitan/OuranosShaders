@@ -1,4 +1,4 @@
-#version 100
+#version 120
 
 uniform sampler2D lightmap;
 uniform sampler2D texture;
@@ -13,18 +13,18 @@ varying vec4 glcolor;
 
 uniform float far;
 
+
 void main() {
-    vec4 color = glcolor;
+    vec4 color = texture2D(texture, texcoord) * glcolor;
     vec4 lightmap = texture2D(lightmap, lmcoord);
 
-    vec4 textures = texture2D(texture, texcoord);
+    vec4 pos = position;
+    pos.w = position.w/far;
 
-    float t = (glcolor.r + glcolor.g + glcolor.b) / 3;
-
-    color.a = textures.a;
-
-    color *= lightmap;
-
-    /* DRAWBUFFERS:0 */
+    /* DRAWBUFFERS:0123 */
     gl_FragData[0] = color; //Albedo
+    gl_FragData[1] = vec4(normal,1); //Normals
+    gl_FragData[2] = pos; //World Position
+    gl_FragData[3] = lightmap; //Lightmap
+
 }
