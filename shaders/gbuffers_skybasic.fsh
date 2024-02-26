@@ -14,10 +14,11 @@ varying vec4 glcolor;
 uniform float far;
 uniform vec3 fogColor;
 uniform vec3 cameraPosition;
+uniform vec3 skyColor;
 
 void main() {
-    vec4 color = vec4(0,0,0,1);
+    vec4 color = vec4(skyColor,1);
 
-    /* DRAWBUFFERS:0 */
+/* DRAWBUFFERS:0 */
     gl_FragData[0] = color; //Albedo
 }

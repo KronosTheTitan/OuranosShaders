@@ -16,7 +16,12 @@ uniform vec3 fogColor;
 uniform vec3 cameraPosition;
 
 void main() {
-    vec4 color = vec4(0,0,0,1);
+    vec4 color = texture2D(texture, texcoord) * glcolor;
+    vec4 lightmap = texture2D(lightmap, lmcoord);
+
+    color *= lightmap;
+
+    color = vec4(0,0,0,1);
 
     /* DRAWBUFFERS:0 */
     gl_FragData[0] = color; //Albedo
