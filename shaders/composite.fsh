@@ -1,12 +1,11 @@
 #version 100
 
-uniform sampler2D texture;
+uniform sampler2D colortex0; //Albedo
 
 varying vec2 texcoord;
 
 void main() {
-    vec4 color = texture2D(texture, texcoord);
-
-/* DRAWBUFFERS:0 */
-    gl_FragData[0] = color; //Albedo
+    vec3 Albedo = texture2D(colortex0, texcoord).rgb;
+/* DRAWBUFFERS:01 */
+    gl_FragData[0] = vec4(Albedo,1); //Color
 }

@@ -6,7 +6,6 @@ varying vec2 texcoord;
 varying vec3 normal;
 
 varying vec4 position;
-varying vec4 cameraSpace;
 varying vec4 glcolor;
 
 void main() {
